@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Circle Ba = new Circle();
+            Console.WriteLine(Ba.s());
+            Console.WriteLine(Ba.C());
+            Square Va = new Square();
+            Console.WriteLine(Va.s());
+            Console.WriteLine(Va.P());
+        }
+    }
+}
+class Circle
+{
+    public int x, y, r;
+    public Circle(int x = 1, int y = 1, int r = 3)
+    {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+    }
+    public double s()
+    {
+        return Math.PI * r * r;
+    }
+    public double C()
+    {
+        return Math.PI * 2 * r;
+    }
+    
+}
+class Square
+{
+    public int x, y, d;
+    public Square(int x = 1, int y = 2, int d = 3)
+    {
+        this.x = x;
+        this.y = y;
+        this.d = d;
+    }
+    public double s()
+    {
+        return Math.Pow(d, 2);
+    }
+    public double P()
+    {
+        return 4 * d;
+    }
+}
