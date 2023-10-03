@@ -1,0 +1,13 @@
+remember(запомнить)(при всех след рекомпозициях значения переменной не будет менятся на старое)
+текстовое поле и как сделать что бы оно работало
+onValueChange ={text=it}
+чек боксы - делаются с помощью Checkbox
+fun a1(){
+var text by remember {mutableStateOf("")}
+TextField(value = text, onValueChange = {text = it})
+
+var b = remember {mutableStateOf("cat")}
+TextField(value = b.value, onValueChange = {b.value = it})
+
+
+}
