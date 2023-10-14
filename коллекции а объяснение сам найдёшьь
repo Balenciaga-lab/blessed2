@@ -1,0 +1,116 @@
+using System;
+using System.Collections.Generic;
+
+public class GenericCollection<T>
+{
+    private List<T> list;
+    private Stack<T> stack;
+    private Queue<T> queue;
+
+    public GenericCollection()
+    {
+        list = new List<T>();
+        stack = new Stack<T>();
+        queue = new Queue<T>();
+    }
+
+    public void AddUsingList(T item)
+    {
+        list.Add(item);
+    }
+
+    public void AddUsingStack(T item)
+    {
+        stack.Push(item);
+    }
+
+    public void AddUsingQueue(T item)
+    {
+        queue.Enqueue(item);
+    }
+
+    public bool RemoveUsingList(T item)
+    {
+        bool removed = list.Remove(item);
+        return removed;
+    }
+
+    public void RemoveUsingStack()
+    {
+        if (stack.Count > 0)
+        {
+            stack.Pop();
+        }
+    }
+
+    public void RemoveUsingQueue()
+    {
+        if (queue.Count > 0)
+        {
+            queue.Dequeue();
+        }
+    }
+
+    public T GetByIndexUsingList(int index)
+    {
+        if (index >= 0 && index < list.Count)
+        {
+            return list[index];
+        }
+        else
+        {
+            throw new IndexOutOfRangeException("Индекс находится вне диапазона коллекции!");
+        }
+    }
+
+    public int GetCountUsingList()
+    {
+        return list.Count;
+    }
+
+    public int GetCountUsingStack()
+    {
+        return stack.Count;
+    }
+
+    public int GetCountUsingQueue()
+    {
+        return queue.Count;
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        GenericCollection<string> myCollection = new GenericCollection<string>();
+
+        myCollection.AddUsingList("Элемент 1");
+        myCollection.AddUsingList("Элемент 2");
+        myCollection.AddUsingStack("Элемент 3");
+        myCollection.AddUsingQueue("Элемент 4");
+
+        bool removed = myCollection.RemoveUsingList("Элемент 1");
+        myCollection.RemoveUsingStack();
+        myCollection.RemoveUsingQueue();
+
+        try
+        {
+            string item = myCollection.GetByIndexUsingList(0);
+            Console.WriteLine("item: " + item);
+        }
+        catch (IndexOutOfRangeException ex)
+        {
+            Console.WriteLine("Ошибка: " + ex.Message);
+        }
+
+        int count1 = myCollection.GetCountUsingList();
+        int count2 = myCollection.GetCountUsingStack();
+        int count3 = myCollection.GetCountUsingQueue();
+
+        Console.WriteLine("removed: " + removed);
+        Console.WriteLine("count1: " + count1);
+        Console.WriteLine("count2: " + count2);
+        Console.WriteLine("count3: " + count3);
+    }
+}
